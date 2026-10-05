@@ -1,6 +1,7 @@
 const shapeField = document.querySelector('#shape');
 const materialField = document.querySelector('#material');
 const densityField = document.querySelector('#density');
+const densityNote = document.querySelector('#density-note');
 const quantityField = document.querySelector('#quantity');
 const dimensions = document.querySelector('#dimensions');
 const errorBox = document.querySelector('#error');
@@ -30,17 +31,52 @@ const definitions = {
     area: ({ width, height }) => width * height,
     formula: 'Querschnitt = Breite × Höhe'
   },
+  hex: {
+    fields: [['width', 'Schlüsselweite', 20], ['length', 'Länge', 1000]],
+    area: ({ width }) => Math.sqrt(3) * width ** 2 / 2,
+    formula: 'Querschnitt = √3 × Schlüsselweite² ÷ 2'
+  },
   'tube-round': {
     fields: [['diameter', 'Außendurchmesser', 30], ['wall', 'Wanddicke', 2], ['length', 'Länge', 1000]],
     area: ({ diameter, wall }) => Math.PI * (diameter ** 2 - (diameter - 2 * wall) ** 2) / 4,
     validate: ({ diameter, wall }) => wall * 2 < diameter,
+    error: 'Die Wanddicke muss kleiner als der halbe Außendurchmesser sein.',
     formula: 'Querschnitt = π × (Außendurchmesser² − Innendurchmesser²) ÷ 4'
+  },
+  'tube-square': {
+    fields: [['width', 'Außenbreite', 40], ['wall', 'Wanddicke', 2], ['length', 'Länge', 1000]],
+    area: ({ width, wall }) => width ** 2 - (width - 2 * wall) ** 2,
+    validate: ({ width, wall }) => wall * 2 < width,
+    error: 'Die Wanddicke muss kleiner als die halbe Außenbreite sein.',
+    formula: 'Querschnitt = Außenquadrat − Innenquadrat (ohne Eckradien)'
   },
   'tube-rect': {
     fields: [['width', 'Außenbreite', 40], ['height', 'Außenhöhe', 20], ['wall', 'Wanddicke', 2], ['length', 'Länge', 1000]],
     area: ({ width, height, wall }) => width * height - (width - 2 * wall) * (height - 2 * wall),
     validate: ({ width, height, wall }) => wall * 2 < width && wall * 2 < height,
+    error: 'Die Wanddicke muss kleiner als die Hälfte beider Außenabmessungen sein.',
     formula: 'Querschnitt = Außenfläche − Innenfläche (ohne Eckradien)'
+  },
+  angle: {
+    fields: [['width', 'Schenkel A', 40], ['height', 'Schenkel B', 40], ['wall', 'Dicke', 4], ['length', 'Länge', 1000]],
+    area: ({ width, height, wall }) => wall * (width + height - wall),
+    validate: ({ width, height, wall }) => wall < width && wall < height,
+    error: 'Die Dicke muss kleiner als beide Schenkellängen sein.',
+    formula: 'Querschnitt = Dicke × (Schenkel A + Schenkel B − Dicke), ohne Radien'
+  },
+  channel: {
+    fields: [['width', 'Außenbreite', 40], ['height', 'Außenhöhe', 40], ['wall', 'Dicke', 4], ['length', 'Länge', 1000]],
+    area: ({ width, height, wall }) => wall * (width + 2 * height - 2 * wall),
+    validate: ({ width, height, wall }) => wall * 2 < width && wall < height,
+    error: 'Die Dicke passt nicht zu Außenbreite und Außenhöhe.',
+    formula: 'Querschnitt = Boden + zwei Stege, gleichmäßige Dicke, ohne Radien'
+  },
+  tee: {
+    fields: [['width', 'Flanschbreite', 40], ['height', 'Gesamthöhe', 40], ['wall', 'Dicke', 4], ['length', 'Länge', 1000]],
+    area: ({ width, height, wall }) => wall * (width + height - wall),
+    validate: ({ width, height, wall }) => wall < width && wall < height,
+    error: 'Die Dicke muss kleiner als Flanschbreite und Gesamthöhe sein.',
+    formula: 'Querschnitt = Flansch + Steg, gleichmäßige Dicke, ohne Radien'
   }
 };
 
@@ -88,7 +124,7 @@ function calculate() {
     return;
   }
   if (definition.validate && !definition.validate(values)) {
-    showError('Die Wanddicke muss kleiner als die halbe Außenabmessung sein.');
+    showError(definition.error || 'Die eingegebenen Abmessungen sind geometrisch nicht möglich.');
     return;
   }
 
@@ -114,11 +150,17 @@ function showError(message) {
 }
 
 materialField.addEventListener('change', () => {
-  if (materialField.value !== 'custom') densityField.value = materialField.value;
+  if (materialField.value !== 'custom') {
+    densityField.value = materialField.value;
+    densityNote.textContent = materialField.selectedOptions[0].dataset.note;
+  } else {
+    densityNote.textContent = 'Eigener Wert: Quelle, Legierung und Einheit vor Verwendung prüfen.';
+  }
   calculate();
 });
 densityField.addEventListener('input', () => {
   materialField.value = 'custom';
+  densityNote.textContent = 'Eigener Wert: Quelle, Legierung und Einheit vor Verwendung prüfen.';
   calculate();
 });
 shapeField.addEventListener('change', renderFields);

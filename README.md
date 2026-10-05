@@ -4,9 +4,13 @@ Ein kleiner, komplett browserbasierter Rechner für die theoretische Masse einfa
 
 - Blech und Flachmaterial
 - Rund-, Vierkant- und Rechteckstäbe
+- Sechskantstäbe
 - Rund- und Rechteckrohre
+- Vierkantrohre sowie idealisierte Winkel-, U- und T-Profile
 
 Die Dichte ist frei editierbar. Die hinterlegten Materialwerte dienen nur als Richtwerte. Legierung, Toleranzen, Eckradien, Oberfläche und Fertigung können die reale Masse verändern.
+
+Die Materialauswahl entspricht den öffentlich sichtbaren METALXACT Kategorien: Stahl, Edelstahl, Aluminium, Kupfer, Messing, Bronze, Rotguss und Kunststoff/POM. Werkstoffdatenblätter: [METALXACT](https://www.metalxact.com/werkstoffdatenlaetter).
 
 ## Verwendung
 

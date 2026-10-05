@@ -171,6 +171,5 @@ densityField.addEventListener('input', () => {
 shapeField.addEventListener('change', renderFields);
 dimensions.addEventListener('input', calculate);
 quantityField.addEventListener('input', calculate);
-document.querySelector('#calculate').addEventListener('click', calculate);
 
 renderFields();

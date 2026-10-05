@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2026 Langlitz Metalle GmbH. All rights reserved.
+ * Copying, modification and redistribution are prohibited without prior written permission.
+ */
+
 const shapeField = document.querySelector('#shape');
 const materialField = document.querySelector('#material');
 const densityField = document.querySelector('#density');

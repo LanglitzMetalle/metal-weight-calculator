@@ -147,10 +147,15 @@
         <label for="material">Material-Richtwert</label>
         <select id="material">
           <optgroup label="Stahl">
-            <option value="7850" data-note="Technischer Richtwert für S235JR; die METALXACT Werkstoffdatenblätter enthalten hierfür keinen eigenen Dichtewert.">Stahl S235JR – 7.850 kg/m³ (Richtwert)</option>
+            <option value="7850" data-note="Technischer Richtwert 7.850 kg/m³ für Stahl nach SSAB Referenzwert; tatsächliche Produktmasse und Toleranzen prüfen.">Stahl S235JR / 1.0038 – 7.850 kg/m³ (Richtwert)</option>
+            <option value="7850" data-note="Technischer Richtwert 7.850 kg/m³ für Stahl. Werkstoff DC01 / 1.0330; tatsächliche Produktmasse und Toleranzen prüfen.">Stahl DC01 / 1.0330 – 7.850 kg/m³ (Richtwert)</option>
+            <option value="7850" data-note="Technischer Richtwert 7.850 kg/m³ für die Stahlbasis. Die Masse der Zinkauflage ist nicht enthalten und hängt von der Beschichtung ab.">Stahl verzinkt DX51D / 1.0917 – 7.850 kg/m³ (Stahlbasis)</option>
+            <option value="7850" data-note="Technischer Richtwert 7.850 kg/m³ für Stahl. Werkstoff S235JRC+C / 1.0122; tatsächliche Produktmasse und Toleranzen prüfen.">Stahl S235JRC+C / 1.0122 – 7.850 kg/m³ (Richtwert)</option>
+            <option value="7850" data-note="Technischer Richtwert 7.850 kg/m³ für Stahl. Werkstoff S355J2 / 1.0577; tatsächliche Produktmasse und Toleranzen prüfen.">Stahl S355J2 / 1.0577 – 7.850 kg/m³ (Richtwert)</option>
           </optgroup>
-          <optgroup label="Edelstahl – METALXACT Werkstoffdatenblätter">
+          <optgroup label="Edelstahl – Werkstoffdatenblätter">
             <option value="7900" data-note="METALXACT Werkstoffdatenblatt 1.4301: Dichte 7,9 kg/dm³.">Edelstahl 1.4301 (V2A) – 7.900 kg/m³</option>
+            <option value="7900" data-note="voestalpine BÖHLER Werkstoffdatenblatt A506 für 1.4305 / X8CrNiS18-9: Dichte 7,9 kg/dm³.">Edelstahl 1.4305 / X8CrNiS18-9 – 7.900 kg/m³</option>
             <option value="8000" data-note="METALXACT Werkstoffdatenblatt 1.4404: Dichte 8,0 kg/dm³.">Edelstahl 1.4404 (V4A) – 8.000 kg/m³</option>
             <option value="7900" data-note="METALXACT Werkstoffdatenblatt 1.4541: Dichte 7,9 kg/dm³.">Edelstahl 1.4541 – 7.900 kg/m³</option>
             <option value="8000" data-note="METALXACT Werkstoffdatenblatt 1.4571: Dichte 8,0 kg/dm³.">Edelstahl 1.4571 – 8.000 kg/m³</option>
@@ -164,9 +169,12 @@
             <option value="2700" data-note="METALXACT Werkstoffdatenblatt EN AW-6060 (AlMgSi0,5): Dichte 2,70 kg/dm³.">Aluminium EN AW-6060 – 2.700 kg/m³</option>
             <option value="2700" data-note="METALXACT Werkstoffdatenblatt EN AW-6082 (AlMgSi1): Dichte 2,70 kg/dm³.">Aluminium EN AW-6082 – 2.700 kg/m³</option>
           </optgroup>
-          <optgroup label="Kupferlegierungen – METALXACT Werkstoffdatenblätter">
+          <optgroup label="Kupfer- und Messinglegierungen – Werkstoffdatenblätter">
             <option value="8930" data-note="METALXACT Werkstoffdatenblatt CW004A Cu-ETP: Dichte 8,93 kg/dm³.">Kupfer CW004A / Cu-ETP – 8.930 kg/m³</option>
+            <option value="8900" data-note="Aurubis Werkstoffdatenblatt Cu-DHP / CW024A: Dichte 8,9 g/cm³.">Kupfer Cu-DHP / CW024A – 8.900 kg/m³</option>
+            <option value="8900" data-note="Aurubis Werkstoffangabe Cu-OF / CW008A: Dichte 8,9 g/cm³.">Kupfer Cu-OF / CW008A – 8.900 kg/m³</option>
             <option value="8440" data-note="METALXACT Werkstoffdatenblatt CW508L CuZn37: Dichte 8,44 kg/dm³.">Messing CW508L / CuZn37 – 8.440 kg/m³</option>
+            <option value="8500" data-note="Diehl Brass Solutions Werkstoffdatenblatt CuZn39Pb3 / CW614N: Dichte 8,5 g/cm³.">Messing CuZn39Pb3 / CW614N – 8.500 kg/m³</option>
             <option value="8720" data-note="METALXACT Werkstoffdatenblatt CC483K CuSn12-C: Dichte 8,72 g/cm³.">Bronze CC483K / CuSn12-C – 8.720 kg/m³</option>
             <option value="8830" data-note="METALXACT Werkstoffdatenblatt CC493K CuSn7Zn4Pb7-C: Dichte 8,83 g/cm³.">Rotguss CC493K / CuSn7Zn4Pb7-C – 8.830 kg/m³</option>
           </optgroup>
@@ -178,8 +186,8 @@
 
         <label for="density">Dichte in kg/m³</label>
         <input id="density" type="number" min="1" step="1" value="7850" inputmode="decimal">
-        <p id="density-note" class="field-note">Technischer Richtwert für S235JR; die METALXACT Werkstoffdatenblätter enthalten hierfür keinen eigenen Dichtewert.</p>
-        <p class="field-note">Datenstand 05.10.2026. Quelle: <a href="https://www.metalxact.com/werkstoffdatenlaetter">METALXACT Werkstoffdatenblätter</a>. Nicht in den Datenblättern ausgewiesene Werte sind ausdrücklich als Richtwert markiert.</p>
+        <p id="density-note" class="field-note">Technischer Richtwert 7.850 kg/m³ für Stahl nach SSAB Referenzwert; tatsächliche Produktmasse und Toleranzen prüfen.</p>
+        <p class="field-note">Datenstand 05.10.2026. Quellen: <a href="https://www.metalxact.com/werkstoffdatenlaetter">METALXACT Werkstoffdatenblätter</a>, <a href="https://www.voestalpine.com/highperformancemetals/international/app/uploads/sites/249/productdb/api/a506_en_gb.pdf">voestalpine BÖHLER A506</a>, <a href="https://www.aurubis.com/dam/jcr%3A1c92bc25-e000-4851-a265-1ffe873aee8f/PNA%20219_Cu-DHP_C12200-E.N.pdf">Aurubis Cu-DHP</a>, <a href="https://www.aurubis.com/en/finland/industrial-products/hot-rolled-plates">Aurubis Cu-OF</a>, <a href="https://www.diehl.com/cms/files/Diehl_Brass_Solutions_Werkstoffdatenblatt_002.pdf">Diehl CW614N</a> und <a href="https://www.ssab.com/-/media/8952369CD8E149889C9AE7D6AB8D414D.ashx">SSAB Stahl-Referenzwert</a>. Richtwerte und Beschichtungsgrenzen sind ausdrücklich gekennzeichnet.</p>
 
         <div id="dimensions" class="dimensions"></div>
 
@@ -207,7 +215,7 @@
       <h2 id="seo-calculator-title">Metallgewicht und Gewicht pro Meter berechnen</h2>
       <p>Der Rechner ermittelt das theoretische <strong>Blechgewicht, Stabgewicht, Rohrgewicht und Profilgewicht</strong> aus Querschnitt, Länge, Stückzahl und Dichte. Unterstützt werden Flachmaterial, Rundstab, Vierkantstab, Rechteckstab, Sechskantstab, Rundrohr, Vierkantrohr, Rechteckrohr sowie idealisierte L-, U- und T-Profile.</p>
       <div class="semantic-grid">
-        <article><h3>Werkstoffe</h3><p>Die Auswahl enthält die in den METALXACT Werkstoffdatenblättern bestätigten Dichten für konkrete Aluminium-, Edelstahl- und Kupferlegierungen. Stahl und POM bleiben klar gekennzeichnete Richtwerte; eigene Dichten können direkt eingegeben werden.</p></article>
+        <article><h3>Werkstoffe</h3><p>Die Auswahl enthält dokumentierte Dichten aus METALXACT und Herstellerdatenblättern für konkrete Aluminium-, Edelstahl-, Kupfer- und Messinglegierungen. Stahl und POM bleiben klar gekennzeichnete Richtwerte; eigene Dichten können direkt eingegeben werden.</p></article>
         <article><h3>Ergebnisse in kg und kg/m</h3><p>Ausgegeben werden Gewicht je Stück, Gesamtgewicht und theoretisches Metergewicht. So lassen sich Zuschnitte und laufende Meter vergleichbar vorberechnen.</p></article>
         <article><h3>Grenzen der Berechnung</h3><p>Das Ergebnis ersetzt keine Waage und keinen technischen Nachweis. Werkstoff, Norm, Lieferzustand, Toleranzen, Radien, Beschichtung und tatsächliche Abmessungen können die reale Masse verändern.</p></article>
       </div>
@@ -219,6 +227,7 @@
         <li>Das Ergebnis ist ein theoretischer Näherungswert. Reale Massen können durch Legierung, Toleranzen, Radien, Oberfläche und Fertigung abweichen.</li>
         <li>Rohre, Winkel-, U- und T-Profile werden mit idealisierter, scharfkantiger Geometrie gerechnet; Eck- und Übergangsradien werden nicht berücksichtigt.</li>
         <li>C-, H-, Z-, Solar-, Maschinenbau- und Normträgerprofile benötigen die Querschnittsdaten oder die Tabellenmasse des konkreten Produkts.</li>
+        <li>Für DX51D / 1.0917 bezieht sich 7.850 kg/m³ auf die Stahlbasis. Die zusätzliche Masse der Zinkauflage ist nicht enthalten.</li>
         <li>Für Angebote, Konstruktion und Nachweise sind Werkstoffdaten, Norm, Lieferzustand und tatsächliche Abmessungen zu prüfen.</li>
       </ul>
     </section>

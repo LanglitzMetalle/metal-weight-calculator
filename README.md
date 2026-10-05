@@ -27,6 +27,10 @@ Das Ergebnis ist eine theoretische Näherung und kein Wiege-, Prüf- oder Abnahm
 
 Mehr zu verfügbaren Profilformen und Anfragewegen: [METALXACT – Metallprofile nach Form](https://www.metalxact.com/formen/).
 
+## Produktübersicht
+
+Die GitHub-Pages-Version enthält zusätzlich eine kuratierte [Produktübersicht](https://langlitzmetalle.github.io/metal-weight-calculator/produkte.html) mit direkten Links zu den METALXACT Kategorien für Profile, Rohre, Stangen, Bleche, Platten und Kantteile nach Maß.
+
 ## Lizenz
 
 MIT License. Siehe `LICENSE`.

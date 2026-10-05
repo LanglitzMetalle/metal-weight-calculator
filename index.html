@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Metallgewicht berechnen | METALXACT</title>
   <meta name="description" content="Einfacher Rechner für das theoretische Gewicht von Metallplatten, Stäben und Rohren. Dichte und Abmessungen sind frei editierbar.">
-  <link rel="stylesheet" href="styles.css?v=20261005-2">
+  <link rel="stylesheet" href="styles.css?v=20261005-3">
 </head>
 <body>
   <main class="shell">
@@ -95,96 +95,6 @@
       <p>Der Rechner läuft vollständig im Browser und überträgt keine Eingabedaten.</p>
     </footer>
   </main>
-  <script src="app.js?v=20261005-2"></script>
-</body>
-</html>
-<!doctype html>
-<html lang="de">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Metallgewicht berechnen | METALXACT</title>
-  <meta name="description" content="Einfacher Rechner für das theoretische Gewicht von Metallplatten, Stäben und Rohren. Dichte und Abmessungen sind frei editierbar.">
-  <link rel="stylesheet" href="styles.css?v=20261005-2">
-</head>
-<body>
-  <main class="shell">
-    <nav class="topnav" aria-label="Seitennavigation">
-      <a class="active" href="index.html" aria-current="page">Gewichtsrechner</a>
-      <a href="produkte.html">Produktübersicht</a>
-      <a href="pulverbeschichtung.html">Pulverbeschichtung</a>
-      <a href="https://www.metalxact.com/metallprofile-nach-mass/">Zum METALXACT Shop</a>
-    </nav>
-    <header>
-      <p class="eyebrow">Open-Source-Werkzeug von METALXACT</p>
-      <h1>Metallgewicht berechnen</h1>
-      <p class="intro">Berechnet die theoretische Masse einfacher Halbzeugformen. Alle Maße werden in Millimetern eingegeben; die Dichte bleibt editierbar.</p>
-    </header>
-
-    <section class="calculator" aria-labelledby="calculator-title">
-      <div class="form-panel">
-        <h2 id="calculator-title">Abmessungen</h2>
-
-        <label for="shape">Form</label>
-        <select id="shape">
-          <option value="plate">Blech / Flachmaterial</option>
-          <option value="round">Rundstab</option>
-          <option value="square">Vierkantstab</option>
-          <option value="rect">Rechteckstab</option>
-          <option value="tube-round">Rundrohr</option>
-          <option value="tube-rect">Rechteckrohr</option>
-        </select>
-
-        <label for="material">Material-Richtwert</label>
-        <select id="material">
-          <option value="7850">Stahl – 7.850 kg/m³</option>
-          <option value="7900">Edelstahl – 7.900 kg/m³</option>
-          <option value="2700">Aluminium – 2.700 kg/m³</option>
-          <option value="8960">Kupfer – 8.960 kg/m³</option>
-          <option value="8500">Messing – 8.500 kg/m³</option>
-          <option value="custom">Eigene Dichte</option>
-        </select>
-
-        <label for="density">Dichte in kg/m³</label>
-        <input id="density" type="number" min="1" step="1" value="7850" inputmode="decimal">
-
-        <div id="dimensions" class="dimensions"></div>
-
-        <label for="quantity">Stückzahl</label>
-        <input id="quantity" type="number" min="1" step="1" value="1" inputmode="numeric">
-
-        <button id="calculate" type="button">Gewicht berechnen</button>
-        <p id="error" class="error" role="alert"></p>
-      </div>
-
-      <div class="result-panel" aria-live="polite">
-        <h2>Ergebnis</h2>
-        <p class="result-label">Gewicht je Stück</p>
-        <p class="result" id="weight-piece">–</p>
-        <p class="result-label">Gesamtgewicht</p>
-        <p class="result" id="weight-total">–</p>
-        <p class="result-label">Gewicht je Meter</p>
-        <p class="result small" id="weight-meter">–</p>
-        <p id="formula" class="formula"></p>
-      </div>
-    </section>
-
-    <section class="notes">
-      <h2>Hinweise zur Verwendung</h2>
-      <ul>
-        <li>Das Ergebnis ist ein theoretischer Näherungswert. Reale Massen können durch Legierung, Toleranzen, Radien, Oberfläche und Fertigung abweichen.</li>
-        <li>Bei Rechteckrohren wird mit scharfkantiger Geometrie gerechnet; Eckradien werden nicht berücksichtigt.</li>
-        <li>Für Angebote, Konstruktion und Nachweise sind Werkstoffdaten, Norm, Lieferzustand und tatsächliche Abmessungen zu prüfen.</li>
-      </ul>
-    </section>
-
-    <footer>
-      <p><a href="produkte.html">Produktübersicht: Profile, Rohre, Stangen, Bleche und Kantteile</a></p>
-      <p><a href="pulverbeschichtung.html">Überblick: Pulverbeschichtung für Metall</a></p>
-      <p>Weitere Metallformen und Anfragewege: <a href="https://www.metalxact.com/formen/">METALXACT – Metallprofile nach Form</a>.</p>
-      <p>Der Rechner läuft vollständig im Browser und überträgt keine Eingabedaten.</p>
-    </footer>
-  </main>
-  <script src="app.js"></script>
+  <script src="app.js?v=20261005-3"></script>
 </body>
 </html>

@@ -94,6 +94,7 @@ button:hover { background: #a93d1b; }
 .process-list strong, .process-list span { display: block; }
 .process-list span { margin-top: 8px; color: #52677a; line-height: 1.55; }
 footer { margin-top: 24px; color: #40566b; }
+.legal-links { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .copyright-notice { margin-top: 22px; padding: 14px 16px; border-left: 4px solid #c74a21; background: rgba(255, 255, 255, .62); border-radius: 0 9px 9px 0; line-height: 1.5; }
 a { color: #0d6d9c; }
 

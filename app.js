@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Langlitz Metalle GmbH. All rights reserved.
+ * Copyright (c) 2026 LANGLITZ Metalle GmbH. All rights reserved.
  * Copying, modification and redistribution are prohibited without prior written permission.
  */
 

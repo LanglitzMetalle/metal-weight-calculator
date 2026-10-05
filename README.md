@@ -39,6 +39,10 @@ Die GitHub-Pages-Version enthält zusätzlich eine kuratierte [Produktübersicht
 
 Der separate [Überblick zur Pulverbeschichtung](https://langlitzmetalle.github.io/metal-weight-calculator/pulverbeschichtung.html) erklärt Produktgruppen und Prozessschritte und verlinkt direkt zu den passenden METALXACT Bereichen.
 
-## Lizenz
+## Urheberrecht und Nutzung
 
-MIT License. Siehe `LICENSE`.
+Copyright © 2026 Langlitz Metalle GmbH. Alle Rechte vorbehalten.
+
+Der Quellcode, das Design, die Texte, Berechnungen und die Dokumentation sind Eigentum der Langlitz Metalle GmbH. Das Kopieren, Verändern, Veröffentlichen, Weiterverbreiten oder kommerzielle Verwerten ist ohne vorherige schriftliche Zustimmung untersagt. Die öffentliche Nutzung des bereitgestellten Rechners überträgt keine Rechte am Quellcode.
+
+Siehe `LICENSE`.

@@ -10,7 +10,7 @@ Ein kleiner, komplett browserbasierter Rechner für die theoretische Masse einfa
 
 Die Dichte ist frei editierbar. Die hinterlegten Materialwerte dienen nur als Richtwerte. Legierung, Toleranzen, Eckradien, Oberfläche und Fertigung können die reale Masse verändern.
 
-Die Materialauswahl entspricht den öffentlich sichtbaren METALXACT Kategorien: Stahl, Edelstahl, Aluminium, Kupfer, Messing, Bronze, Rotguss und Kunststoff/POM. Werkstoffdatenblätter: [METALXACT](https://www.metalxact.com/werkstoffdatenlaetter).
+Die Materialauswahl ist mit den öffentlich bereitgestellten METALXACT Werkstoffdatenblättern abgeglichen (Stand 05.10.2026). Enthalten sind bestätigte Dichten für EN AW-1050A, EN AW-2007, EN AW-2017A, EN AW-5083, EN AW-5754, EN AW-6060, EN AW-6082, 1.4301, 1.4404, 1.4541, 1.4571, CW004A, CW508L, CC483K und CC493K. Stahl S235JR und POM sind ausdrücklich als technische Richtwerte gekennzeichnet, da der METALXACT Datenblattbereich dafür keinen Dichtewert ausweist. Quelle: [METALXACT Werkstoffdatenblätter](https://www.metalxact.com/werkstoffdatenlaetter).
 
 ## Verwendung
 

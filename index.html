@@ -145,20 +145,40 @@
 
         <label for="material">Material-Richtwert</label>
         <select id="material">
-          <option value="7850" data-note="Allgemeiner Richtwert; konkrete Stahlsorte prüfen.">Stahl – 7.850 kg/m³</option>
-          <option value="7900" data-note="Richtwert für austenitischen Edelstahl; Werkstoffnummer prüfen.">Edelstahl – 7.900 kg/m³</option>
-          <option value="2700" data-note="Richtwert; die tatsächliche Dichte hängt von der Aluminiumlegierung ab.">Aluminium – 2.700 kg/m³</option>
-          <option value="8960" data-note="Richtwert für Kupfer; Werkstoff und Lieferzustand prüfen.">Kupfer – 8.960 kg/m³</option>
-          <option value="8500" data-note="Richtwert; Messinglegierungen unterscheiden sich in ihrer Dichte.">Messing – 8.500 kg/m³</option>
-          <option value="8800" data-note="Richtwert für Zinnbronze; konkrete Legierung, etwa CuSn12, prüfen.">Bronze – 8.800 kg/m³</option>
-          <option value="8830" data-note="Richtwert für Rotguss; konkrete Legierung, etwa CuSn7Zn4Pb7, prüfen.">Rotguss – 8.830 kg/m³</option>
-          <option value="1410" data-note="Richtwert für POM. Andere Kunststoffe können stark abweichen.">Kunststoff / POM – 1.410 kg/m³</option>
+          <optgroup label="Stahl">
+            <option value="7850" data-note="Technischer Richtwert für S235JR; die METALXACT Werkstoffdatenblätter enthalten hierfür keinen eigenen Dichtewert.">Stahl S235JR – 7.850 kg/m³ (Richtwert)</option>
+          </optgroup>
+          <optgroup label="Edelstahl – METALXACT Werkstoffdatenblätter">
+            <option value="7900" data-note="METALXACT Werkstoffdatenblatt 1.4301: Dichte 7,9 kg/dm³.">Edelstahl 1.4301 (V2A) – 7.900 kg/m³</option>
+            <option value="8000" data-note="METALXACT Werkstoffdatenblatt 1.4404: Dichte 8,0 kg/dm³.">Edelstahl 1.4404 (V4A) – 8.000 kg/m³</option>
+            <option value="7900" data-note="METALXACT Werkstoffdatenblatt 1.4541: Dichte 7,9 kg/dm³.">Edelstahl 1.4541 – 7.900 kg/m³</option>
+            <option value="8000" data-note="METALXACT Werkstoffdatenblatt 1.4571: Dichte 8,0 kg/dm³.">Edelstahl 1.4571 – 8.000 kg/m³</option>
+          </optgroup>
+          <optgroup label="Aluminium – METALXACT Werkstoffdatenblätter">
+            <option value="2700" data-note="METALXACT Werkstoffdatenblatt EN AW-1050A (Al99,5): Dichte 2,70 kg/dm³.">Aluminium EN AW-1050A – 2.700 kg/m³</option>
+            <option value="2850" data-note="METALXACT Werkstoffdatenblatt EN AW-2007 (AlCu4PbMgMn): Dichte 2,85 kg/dm³.">Aluminium EN AW-2007 – 2.850 kg/m³</option>
+            <option value="2800" data-note="METALXACT Werkstoffdatenblatt EN AW-2017A (AlCu4MgSi): Dichte 2,80 kg/dm³.">Aluminium EN AW-2017A – 2.800 kg/m³</option>
+            <option value="2660" data-note="METALXACT Werkstoffdatenblatt EN AW-5083 (AlMg4,5Mn0,7): Dichte 2,66 kg/dm³.">Aluminium EN AW-5083 – 2.660 kg/m³</option>
+            <option value="2670" data-note="METALXACT Werkstoffdatenblatt EN AW-5754 (AlMg3): Dichte 2,67 kg/dm³.">Aluminium EN AW-5754 – 2.670 kg/m³</option>
+            <option value="2700" data-note="METALXACT Werkstoffdatenblatt EN AW-6060 (AlMgSi0,5): Dichte 2,70 kg/dm³.">Aluminium EN AW-6060 – 2.700 kg/m³</option>
+            <option value="2700" data-note="METALXACT Werkstoffdatenblatt EN AW-6082 (AlMgSi1): Dichte 2,70 kg/dm³.">Aluminium EN AW-6082 – 2.700 kg/m³</option>
+          </optgroup>
+          <optgroup label="Kupferlegierungen – METALXACT Werkstoffdatenblätter">
+            <option value="8930" data-note="METALXACT Werkstoffdatenblatt CW004A Cu-ETP: Dichte 8,93 kg/dm³.">Kupfer CW004A / Cu-ETP – 8.930 kg/m³</option>
+            <option value="8440" data-note="METALXACT Werkstoffdatenblatt CW508L CuZn37: Dichte 8,44 kg/dm³.">Messing CW508L / CuZn37 – 8.440 kg/m³</option>
+            <option value="8720" data-note="METALXACT Werkstoffdatenblatt CC483K CuSn12-C: Dichte 8,72 g/cm³.">Bronze CC483K / CuSn12-C – 8.720 kg/m³</option>
+            <option value="8830" data-note="METALXACT Werkstoffdatenblatt CC493K CuSn7Zn4Pb7-C: Dichte 8,83 g/cm³.">Rotguss CC493K / CuSn7Zn4Pb7-C – 8.830 kg/m³</option>
+          </optgroup>
+          <optgroup label="Kunststoff">
+            <option value="1410" data-note="Technischer Richtwert für POM; im METALXACT Werkstoffdatenblatt-Bereich ist kein Dichtewert für POM veröffentlicht.">POM – 1.410 kg/m³ (Richtwert)</option>
+          </optgroup>
           <option value="custom">Eigene Dichte</option>
         </select>
 
         <label for="density">Dichte in kg/m³</label>
         <input id="density" type="number" min="1" step="1" value="7850" inputmode="decimal">
-        <p id="density-note" class="field-note">Allgemeiner Richtwert; konkrete Stahlsorte prüfen.</p>
+        <p id="density-note" class="field-note">Technischer Richtwert für S235JR; die METALXACT Werkstoffdatenblätter enthalten hierfür keinen eigenen Dichtewert.</p>
+        <p class="field-note">Datenstand 05.10.2026. Quelle: <a href="https://www.metalxact.com/werkstoffdatenlaetter">METALXACT Werkstoffdatenblätter</a>. Nicht in den Datenblättern ausgewiesene Werte sind ausdrücklich als Richtwert markiert.</p>
 
         <div id="dimensions" class="dimensions"></div>
 
@@ -186,7 +206,7 @@
       <h2 id="seo-calculator-title">Metallgewicht und Gewicht pro Meter berechnen</h2>
       <p>Der Rechner ermittelt das theoretische <strong>Blechgewicht, Stabgewicht, Rohrgewicht und Profilgewicht</strong> aus Querschnitt, Länge, Stückzahl und Dichte. Unterstützt werden Flachmaterial, Rundstab, Vierkantstab, Rechteckstab, Sechskantstab, Rundrohr, Vierkantrohr, Rechteckrohr sowie idealisierte L-, U- und T-Profile.</p>
       <div class="semantic-grid">
-        <article><h3>Werkstoffe</h3><p>Richtwerte stehen für Stahl, Edelstahl, Aluminium, Kupfer, Messing, Bronze, Rotguss und POM bereit. Für die konkrete Legierung kann die Dichte direkt angepasst werden.</p></article>
+        <article><h3>Werkstoffe</h3><p>Die Auswahl enthält die in den METALXACT Werkstoffdatenblättern bestätigten Dichten für konkrete Aluminium-, Edelstahl- und Kupferlegierungen. Stahl und POM bleiben klar gekennzeichnete Richtwerte; eigene Dichten können direkt eingegeben werden.</p></article>
         <article><h3>Ergebnisse in kg und kg/m</h3><p>Ausgegeben werden Gewicht je Stück, Gesamtgewicht und theoretisches Metergewicht. So lassen sich Zuschnitte und laufende Meter vergleichbar vorberechnen.</p></article>
         <article><h3>Grenzen der Berechnung</h3><p>Das Ergebnis ersetzt keine Waage und keinen technischen Nachweis. Werkstoff, Norm, Lieferzustand, Toleranzen, Radien, Beschichtung und tatsächliche Abmessungen können die reale Masse verändern.</p></article>
       </div>

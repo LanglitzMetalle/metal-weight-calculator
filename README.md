@@ -31,6 +31,10 @@ Mehr zu verfügbaren Profilformen und Anfragewegen: [METALXACT – Metallprofile
 
 Die GitHub-Pages-Version enthält zusätzlich eine kuratierte [Produktübersicht](https://langlitzmetalle.github.io/metal-weight-calculator/produkte.html) mit direkten Links zu den METALXACT Kategorien für Profile, Rohre, Stangen, Bleche, Platten und Kantteile nach Maß.
 
+## Pulverbeschichtung
+
+Der separate [Überblick zur Pulverbeschichtung](https://langlitzmetalle.github.io/metal-weight-calculator/pulverbeschichtung.html) erklärt Produktgruppen und Prozessschritte und verlinkt direkt zu den passenden METALXACT Bereichen.
+
 ## Lizenz
 
 MIT License. Siehe `LICENSE`.

@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Metallgewicht berechnen | METALXACT</title>
+  <meta name="description" content="Autonomer METALXACT Rechnerblock für theoretisches Metallgewicht, Stückgewicht, Gesamtgewicht und Metergewicht.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://langlitzmetalle.github.io/metal-weight-calculator/">
+  <style>
+    /* Copyright (c) 2026 LANGLITZ Metalle GmbH. Alle Rechte vorbehalten. */
+    :root {
+      color-scheme: light;
+      --brand: #10a19a;
+      --ink: #173f67;
+      --accent: #d4471d;
+      --page: #eef3f7;
+      --line: #abc0d2;
+      --white: #fff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { font-family: Arial, Helvetica, sans-serif; }
+
+    body {
+      margin: 0;
+      background: var(--page);
+      color: #0d2943;
+    }
+
+    a { color: #007c83; }
+
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 3px solid rgba(16, 161, 154, .38);
+      outline-offset: 2px;
+    }
+
+    .calculator-block {
+      width: min(100%, 1120px);
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--accent);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .075em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(2.25rem, 6vw, 4.2rem);
+      line-height: .98;
+      letter-spacing: -.035em;
+    }
+
+    .intro {
+      max-width: 780px;
+      margin: 16px 0 26px;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .calculator {
+      display: grid;
+      grid-template-columns: minmax(0, 1.22fr) minmax(285px, .78fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .form-panel,
+    .result-panel {
+      border-radius: 18px;
+      padding: 26px;
+    }
+
+    .form-panel {
+      background: var(--white);
+      box-shadow: 0 10px 30px rgba(23, 63, 103, .06);
+    }
+
+    .result-panel {
+      background: #10a19a;
+      color: var(--white);
+    }
+
+    h2 {
+      margin: 4px 0 22px;
+      font-size: 1.25rem;
+    }
+
+    label {
+      display: block;
+      margin: 16px 0 7px;
+      font-size: .9rem;
+      font-weight: 750;
+    }
+
+    input,
+    select {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: #0d2943;
+      padding: 10px 12px;
+      font: inherit;
+    }
+
+    .field-note {
+      margin: 8px 0 0;
+      color: #41617e;
+      font-size: .76rem;
+      line-height: 1.55;
+    }
+
+    .dimensions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 14px;
+      margin-top: 8px;
+    }
+
+    .error {
+      min-height: 1.25em;
+      margin: 12px 0 0;
+      color: #b42318;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    .result-label {
+      margin: 22px 0 6px;
+      font-size: .86rem;
+      opacity: .9;
+    }
+
+    .result {
+      margin: 0;
+      font-size: clamp(1.9rem, 4vw, 2.45rem);
+      font-weight: 850;
+      line-height: 1.1;
+    }
+
+    .result.small { font-size: 1.4rem; }
+
+    .formula {
+      margin: 30px 0 0;
+      font-size: .9rem;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 760px) {
+      .calculator-block { padding: 20px 14px; }
+      .calculator { grid-template-columns: 1fr; }
+      .result-panel { min-height: 350px; }
+    }
+
+    @media (max-width: 480px) {
+      .dimensions { grid-template-columns: 1fr; }
+      .form-panel,
+      .result-panel { padding: 21px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="calculator-block">
+    <header>
+      <p class="eyebrow">Online-Werkzeug von METALXACT</p>
+      <h1>Metallgewicht berechnen</h1>
+      <p class="intro">Berechnet die theoretische Masse einfacher Halbzeugformen. Alle Maße werden in Millimetern eingegeben; die Dichte bleibt editierbar.</p>
+    </header>
+
+    <section class="calculator" aria-labelledby="calculator-title">
+      <div class="form-panel">
+        <h2 id="calculator-title">Abmessungen</h2>
+
+        <label for="shape">Form</label>
+        <select id="shape">
+          <option value="plate">Blech / Flachmaterial</option>
+          <option value="round">Rundstab</option>
+          <option value="square">Vierkantstab</option>
+          <option value="rect">Rechteckstab</option>
+          <option value="hex">Sechskantstab</option>
+          <option value="tube-round">Rundrohr</option>
+          <option value="tube-square">Vierkantrohr</option>
+          <option value="tube-rect">Rechteckrohr</option>
+          <option value="angle">Winkelprofil (L)</option>
+          <option value="channel">U-Profil</option>
+          <option value="tee">T-Profil</option>
+        </select>
+
+        <label for="material">Material-Richtwert</label>
+        <select id="material">
+          <optgroup label="Stahl">
+            <option value="7850" data-note="Technischer Richtwert 7.850 kg/m³ für Stahl nach SSAB Referenzwert; tatsächliche Produktmasse und Toleranzen prüfen.">Stahl S235JR / 1.0038 – 7.850 kg/m³ (Richtwert)</option>
+            <option value="7850" data-note="Technischer Richtwert 7.850 kg/m³ für Stahl. Werkstoff DC01 / 1.0330; tatsächliche Produktmasse und Toleranzen prüfen.">Stahl DC01 / 1.0330 – 7.850 kg/m³ (Richtwert)</option>
+            <option value="7850" data-note="Technischer Richtwert 7.850 kg/m³ für die Stahlbasis. Die Masse der Zinkauflage ist nicht enthalten und hängt von der Beschichtung ab.">Stahl verzinkt DX51D / 1.0917 – 7.850 kg/m³ (Stahlbasis)</option>
+            <option value="7850" data-note="Technischer Richtwert 7.850 kg/m³ für Stahl. Werkstoff S235JRC+C / 1.0122; tatsächliche Produktmasse und Toleranzen prüfen.">Stahl S235JRC+C / 1.0122 – 7.850 kg/m³ (Richtwert)</option>
+            <option value="7850" data-note="Technischer Richtwert 7.850 kg/m³ für Stahl. Werkstoff S355J2 / 1.0577; tatsächliche Produktmasse und Toleranzen prüfen.">Stahl S355J2 / 1.0577 – 7.850 kg/m³ (Richtwert)</option>
+          </optgroup>
+          <optgroup label="Edelstahl – Werkstoffdatenblätter">
+            <option value="7900" data-note="METALXACT Werkstoffdatenblatt 1.4301: Dichte 7,9 kg/dm³.">Edelstahl 1.4301 (V2A) – 7.900 kg/m³</option>
+            <option value="7900" data-note="voestalpine BÖHLER Werkstoffdatenblatt A506 für 1.4305 / X8CrNiS18-9: Dichte 7,9 kg/dm³.">Edelstahl 1.4305 / X8CrNiS18-9 – 7.900 kg/m³</option>
+            <option value="8000" data-note="METALXACT Werkstoffdatenblatt 1.4404: Dichte 8,0 kg/dm³.">Edelstahl 1.4404 (V4A) – 8.000 kg/m³</option>
+            <option value="7900" data-note="METALXACT Werkstoffdatenblatt 1.4541: Dichte 7,9 kg/dm³.">Edelstahl 1.4541 – 7.900 kg/m³</option>
+            <option value="8000" data-note="METALXACT Werkstoffdatenblatt 1.4571: Dichte 8,0 kg/dm³.">Edelstahl 1.4571 – 8.000 kg/m³</option>
+          </optgroup>
+          <optgroup label="Aluminium – METALXACT Werkstoffdatenblätter">
+            <option value="2700" data-note="METALXACT Werkstoffdatenblatt EN AW-1050A (Al99,5): Dichte 2,70 kg/dm³.">Aluminium EN AW-1050A – 2.700 kg/m³</option>
+            <option value="2850" data-note="METALXACT Werkstoffdatenblatt EN AW-2007 (AlCu4PbMgMn): Dichte 2,85 kg/dm³.">Aluminium EN AW-2007 – 2.850 kg/m³</option>
+            <option value="2800" data-note="METALXACT Werkstoffdatenblatt EN AW-2017A (AlCu4MgSi): Dichte 2,80 kg/dm³.">Aluminium EN AW-2017A – 2.800 kg/m³</option>
+            <option value="2660" data-note="METALXACT Werkstoffdatenblatt EN AW-5083 (AlMg4,5Mn0,7): Dichte 2,66 kg/dm³.">Aluminium EN AW-5083 – 2.660 kg/m³</option>
+            <option value="2670" data-note="METALXACT Werkstoffdatenblatt EN AW-5754 (AlMg3): Dichte 2,67 kg/dm³.">Aluminium EN AW-5754 – 2.670 kg/m³</option>
+            <option value="2700" data-note="METALXACT Werkstoffdatenblatt EN AW-6060 (AlMgSi0,5): Dichte 2,70 kg/dm³.">Aluminium EN AW-6060 – 2.700 kg/m³</option>
+            <option value="2700" data-note="METALXACT Werkstoffdatenblatt EN AW-6082 (AlMgSi1): Dichte 2,70 kg/dm³.">Aluminium EN AW-6082 – 2.700 kg/m³</option>
+          </optgroup>
+          <optgroup label="Kupfer- und Messinglegierungen – Werkstoffdatenblätter">
+            <option value="8930" data-note="METALXACT Werkstoffdatenblatt CW004A Cu-ETP: Dichte 8,93 kg/dm³.">Kupfer CW004A / Cu-ETP – 8.930 kg/m³</option>
+            <option value="8900" data-note="Aurubis Werkstoffdatenblatt Cu-DHP / CW024A: Dichte 8,9 g/cm³.">Kupfer Cu-DHP / CW024A – 8.900 kg/m³</option>
+            <option value="8900" data-note="Aurubis Werkstoffangabe Cu-OF / CW008A: Dichte 8,9 g/cm³.">Kupfer Cu-OF / CW008A – 8.900 kg/m³</option>
+            <option value="8440" data-note="METALXACT Werkstoffdatenblatt CW508L CuZn37: Dichte 8,44 kg/dm³.">Messing CW508L / CuZn37 – 8.440 kg/m³</option>
+            <option value="8500" data-note="Diehl Brass Solutions Werkstoffdatenblatt CuZn39Pb3 / CW614N: Dichte 8,5 g/cm³.">Messing CuZn39Pb3 / CW614N – 8.500 kg/m³</option>
+            <option value="8720" data-note="METALXACT Werkstoffdatenblatt CC483K CuSn12-C: Dichte 8,72 g/cm³.">Bronze CC483K / CuSn12-C – 8.720 kg/m³</option>
+            <option value="8830" data-note="METALXACT Werkstoffdatenblatt CC493K CuSn7Zn4Pb7-C: Dichte 8,83 g/cm³.">Rotguss CC493K / CuSn7Zn4Pb7-C – 8.830 kg/m³</option>
+          </optgroup>
+          <optgroup label="Kunststoff">
+            <option value="1410" data-note="Technischer Richtwert für POM; im METALXACT Werkstoffdatenblatt-Bereich ist kein Dichtewert für POM veröffentlicht.">POM – 1.410 kg/m³ (Richtwert)</option>
+          </optgroup>
+          <option value="custom">Eigene Dichte</option>
+        </select>
+
+        <label for="density">Dichte in kg/m³</label>
+        <input id="density" type="number" min="1" step="1" value="7850" inputmode="decimal">
+        <p id="density-note" class="field-note">Technischer Richtwert 7.850 kg/m³ für Stahl nach SSAB Referenzwert; tatsächliche Produktmasse und Toleranzen prüfen.</p>
+        <p class="field-note">Datenstand 05.10.2026. Quellen: <a href="https://www.metalxact.com/werkstoffdatenlaetter">METALXACT Werkstoffdatenblätter</a>, <a href="https://www.voestalpine.com/highperformancemetals/international/app/uploads/sites/249/productdb/api/a506_en_gb.pdf">voestalpine BÖHLER A506</a>, <a href="https://www.aurubis.com/dam/jcr%3A1c92bc25-e000-4851-a265-1ffe873aee8f/PNA%20219_Cu-DHP_C12200-E.N.pdf">Aurubis Cu-DHP</a>, <a href="https://www.aurubis.com/en/finland/industrial-products/hot-rolled-plates">Aurubis Cu-OF</a>, <a href="https://www.diehl.com/cms/files/Diehl_Brass_Solutions_Werkstoffdatenblatt_002.pdf">Diehl CW614N</a> und <a href="https://www.ssab.com/-/media/8952369CD8E149889C9AE7D6AB8D414D.ashx">SSAB Stahl-Referenzwert</a>.</p>
+
+        <div id="dimensions" class="dimensions"></div>
+
+        <label for="quantity">Stückzahl</label>
+        <input id="quantity" type="number" min="1" step="1" value="1" inputmode="numeric">
+        <p id="error" class="error" role="alert"></p>
+      </div>
+
+      <div class="result-panel" aria-live="polite">
+        <h2>Ergebnis</h2>
+        <p class="result-label">Gewicht je Stück</p>
+        <p class="result" id="weight-piece">–</p>
+        <p class="result-label">Gesamtgewicht</p>
+        <p class="result" id="weight-total">–</p>
+        <p class="result-label">Gewicht je Meter</p>
+        <p class="result small" id="weight-meter">–</p>
+        <p id="formula" class="formula"></p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /* Copyright (c) 2026 LANGLITZ Metalle GmbH. Alle Rechte vorbehalten. */
+    const shapeField = document.querySelector('#shape');
+    const materialField = document.querySelector('#material');
+    const densityField = document.querySelector('#density');
+    const densityNote = document.querySelector('#density-note');
+    const quantityField = document.querySelector('#quantity');
+    const dimensions = document.querySelector('#dimensions');
+    const errorBox = document.querySelector('#error');
+    const pieceBox = document.querySelector('#weight-piece');
+    const totalBox = document.querySelector('#weight-total');
+    const metreBox = document.querySelector('#weight-meter');
+    const formulaBox = document.querySelector('#formula');
+
+    const definitions = {
+      plate: {
+        fields: [['width', 'Breite', 100], ['height', 'Dicke', 5], ['length', 'Länge', 1000]],
+        area: ({ width, height }) => width * height,
+        formula: 'Querschnitt = Breite × Dicke'
+      },
+      round: {
+        fields: [['diameter', 'Durchmesser', 20], ['length', 'Länge', 1000]],
+        area: ({ diameter }) => Math.PI * diameter ** 2 / 4,
+        formula: 'Querschnitt = π × Durchmesser² ÷ 4'
+      },
+      square: {
+        fields: [['width', 'Kantenlänge', 20], ['length', 'Länge', 1000]],
+        area: ({ width }) => width ** 2,
+        formula: 'Querschnitt = Kantenlänge²'
+      },
+      rect: {
+        fields: [['width', 'Breite', 40], ['height', 'Höhe', 20], ['length', 'Länge', 1000]],
+        area: ({ width, height }) => width * height,
+        formula: 'Querschnitt = Breite × Höhe'
+      },
+      hex: {
+        fields: [['width', 'Schlüsselweite', 20], ['length', 'Länge', 1000]],
+        area: ({ width }) => Math.sqrt(3) * width ** 2 / 2,
+        formula: 'Querschnitt = √3 × Schlüsselweite² ÷ 2'
+      },
+      'tube-round': {
+        fields: [['diameter', 'Außendurchmesser', 30], ['wall', 'Wanddicke', 2], ['length', 'Länge', 1000]],
+        area: ({ diameter, wall }) => Math.PI * (diameter ** 2 - (diameter - 2 * wall) ** 2) / 4,
+        validate: ({ diameter, wall }) => wall * 2 < diameter,
+        error: 'Die Wanddicke muss kleiner als der halbe Außendurchmesser sein.',
+        formula: 'Querschnitt = π × (Außendurchmesser² − Innendurchmesser²) ÷ 4'
+      },
+      'tube-square': {
+        fields: [['width', 'Außenbreite', 40], ['wall', 'Wanddicke', 2], ['length', 'Länge', 1000]],
+        area: ({ width, wall }) => width ** 2 - (width - 2 * wall) ** 2,
+        validate: ({ width, wall }) => wall * 2 < width,
+        error: 'Die Wanddicke muss kleiner als die halbe Außenbreite sein.',
+        formula: 'Querschnitt = Außenquadrat − Innenquadrat (ohne Eckradien)'
+      },
+      'tube-rect': {
+        fields: [['width', 'Außenbreite', 40], ['height', 'Außenhöhe', 20], ['wall', 'Wanddicke', 2], ['length', 'Länge', 1000]],
+        area: ({ width, height, wall }) => width * height - (width - 2 * wall) * (height - 2 * wall),
+        validate: ({ width, height, wall }) => wall * 2 < width && wall * 2 < height,
+        error: 'Die Wanddicke muss kleiner als die Hälfte beider Außenabmessungen sein.',
+        formula: 'Querschnitt = Außenfläche − Innenfläche (ohne Eckradien)'
+      },
+      angle: {
+        fields: [['width', 'Schenkel A', 40], ['height', 'Schenkel B', 40], ['wall', 'Dicke', 4], ['length', 'Länge', 1000]],
+        area: ({ width, height, wall }) => wall * (width + height - wall),
+        validate: ({ width, height, wall }) => wall < width && wall < height,
+        error: 'Die Dicke muss kleiner als beide Schenkellängen sein.',
+        formula: 'Querschnitt = Dicke × (Schenkel A + Schenkel B − Dicke), ohne Radien'
+      },
+      channel: {
+        fields: [['width', 'Außenbreite', 40], ['height', 'Außenhöhe', 40], ['wall', 'Dicke', 4], ['length', 'Länge', 1000]],
+        area: ({ width, height, wall }) => wall * (width + 2 * height - 2 * wall),
+        validate: ({ width, height, wall }) => wall * 2 < width && wall < height,
+        error: 'Die Dicke passt nicht zu Außenbreite und Außenhöhe.',
+        formula: 'Querschnitt = Boden + zwei Stege, gleichmäßige Dicke, ohne Radien'
+      },
+      tee: {
+        fields: [['width', 'Flanschbreite', 40], ['height', 'Gesamthöhe', 40], ['wall', 'Dicke', 4], ['length', 'Länge', 1000]],
+        area: ({ width, height, wall }) => wall * (width + height - wall),
+        validate: ({ width, height, wall }) => wall < width && wall < height,
+        error: 'Die Dicke muss kleiner als Flanschbreite und Gesamthöhe sein.',
+        formula: 'Querschnitt = Flansch + Steg, gleichmäßige Dicke, ohne Radien'
+      }
+    };
+
+    function renderFields() {
+      const definition = definitions[shapeField.value];
+      dimensions.replaceChildren();
+      definition.fields.forEach(([name, label, value]) => {
+        const wrapper = document.createElement('div');
+        const fieldLabel = document.createElement('label');
+        const input = document.createElement('input');
+        fieldLabel.htmlFor = name;
+        fieldLabel.textContent = `${label} in mm`;
+        input.id = name;
+        input.name = name;
+        input.type = 'number';
+        input.min = '0.001';
+        input.step = 'any';
+        input.value = String(value);
+        input.inputMode = 'decimal';
+        wrapper.append(fieldLabel, input);
+        dimensions.append(wrapper);
+      });
+      calculate();
+    }
+
+    function formatKg(value) {
+      return new Intl.NumberFormat('de-DE', {
+        minimumFractionDigits: value < 1 ? 3 : 2,
+        maximumFractionDigits: value < 1 ? 3 : 2
+      }).format(value) + ' kg';
+    }
+
+    function calculate() {
+      const definition = definitions[shapeField.value];
+      const values = {};
+      for (const [name] of definition.fields) {
+        values[name] = Number(document.querySelector(`#${name}`).value);
+      }
+      const density = Number(densityField.value);
+      const quantity = Number(quantityField.value);
+      const allPositive = Object.values(values).every(value => Number.isFinite(value) && value > 0);
+
+      if (!allPositive || !Number.isFinite(density) || density <= 0 || !Number.isInteger(quantity) || quantity < 1) {
+        showError('Bitte nur positive Abmessungen und eine ganze Stückzahl ab 1 eingeben.');
+        return;
+      }
+      if (definition.validate && !definition.validate(values)) {
+        showError(definition.error || 'Die eingegebenen Abmessungen sind geometrisch nicht möglich.');
+        return;
+      }
+
+      const areaMm2 = definition.area(values);
+      const volumeM3 = areaMm2 * values.length / 1_000_000_000;
+      const pieceKg = volumeM3 * density;
+      const metreKg = areaMm2 * density / 1_000_000;
+
+      errorBox.textContent = '';
+      pieceBox.textContent = formatKg(pieceKg);
+      totalBox.textContent = formatKg(pieceKg * quantity);
+      metreBox.textContent = formatKg(metreKg) + '/m';
+      formulaBox.textContent = `${definition.formula}; Masse = Volumen × Dichte.`;
+    }
+
+    function showError(message) {
+      errorBox.textContent = message;
+      pieceBox.textContent = '–';
+      totalBox.textContent = '–';
+      metreBox.textContent = '–';
+      formulaBox.textContent = '';
+    }
+
+    materialField.addEventListener('change', () => {
+      if (materialField.value !== 'custom') {
+        densityField.value = materialField.value;
+        densityNote.textContent = materialField.selectedOptions[0].dataset.note;
+      } else {
+        densityNote.textContent = 'Eigener Wert: Quelle, Legierung und Einheit vor Verwendung prüfen.';
+      }
+      calculate();
+    });
+    densityField.addEventListener('input', () => {
+      materialField.value = 'custom';
+      densityNote.textContent = 'Eigener Wert: Quelle, Legierung und Einheit vor Verwendung prüfen.';
+      calculate();
+    });
+    shapeField.addEventListener('change', renderFields);
+    dimensions.addEventListener('input', calculate);
+    quantityField.addEventListener('input', calculate);
+
+    renderFields();
+  </script>
+</body>
+</html>

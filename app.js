@@ -14,6 +14,9 @@ const pieceBox = document.querySelector('#weight-piece');
 const totalBox = document.querySelector('#weight-total');
 const metreBox = document.querySelector('#weight-meter');
 const formulaBox = document.querySelector('#formula');
+const shapeVisual = document.querySelector('#shape-visual');
+const shapeVisualUse = document.querySelector('#shape-visual-use');
+const shapeVisualLabel = document.querySelector('#shape-visual-label');
 
 const definitions = {
   plate: {
@@ -87,6 +90,10 @@ const definitions = {
 
 function renderFields() {
   const definition = definitions[shapeField.value];
+  const shapeName = shapeField.selectedOptions[0].textContent.trim();
+  shapeVisualUse.setAttribute('href', `#mx-shape-${shapeField.value}`);
+  shapeVisualLabel.textContent = shapeName;
+  shapeVisual.setAttribute('aria-label', `Formdarstellung: ${shapeName}`);
   dimensions.replaceChildren();
   definition.fields.forEach(([name, label, value]) => {
     const wrapper = document.createElement('div');

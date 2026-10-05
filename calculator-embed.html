@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 
 <style>
-  @import url("https://langlitzmetalle.github.io/metal-weight-calculator/calculator-block.css?v=20261005-1");
+  @import url("https://langlitzmetalle.github.io/metal-weight-calculator/calculator-block.css?v=20261005-2");
 </style>
 
 <main class="calculator-block">
@@ -92,6 +92,50 @@
         <p class="result-label">Gewicht je Meter</p>
         <p class="result small" id="weight-meter">–</p>
         <p id="formula" class="formula"></p>
+        <div id="shape-visual" class="shape-visual" role="img" aria-label="Formdarstellung: Blech / Flachmaterial">
+          <svg viewBox="0 0 240 160" aria-hidden="true" focusable="false">
+            <defs>
+              <symbol id="mx-shape-plate" viewBox="0 0 240 160">
+                <rect class="shape-solid" x="25" y="62" width="190" height="36" rx="3"/>
+              </symbol>
+              <symbol id="mx-shape-round" viewBox="0 0 240 160">
+                <circle class="shape-solid" cx="120" cy="80" r="52"/>
+              </symbol>
+              <symbol id="mx-shape-square" viewBox="0 0 240 160">
+                <rect class="shape-solid" x="70" y="30" width="100" height="100" rx="2"/>
+              </symbol>
+              <symbol id="mx-shape-rect" viewBox="0 0 240 160">
+                <rect class="shape-solid" x="35" y="50" width="170" height="60" rx="2"/>
+              </symbol>
+              <symbol id="mx-shape-hex" viewBox="0 0 240 160">
+                <polygon class="shape-solid" points="78,28 162,28 210,80 162,132 78,132 30,80"/>
+              </symbol>
+              <symbol id="mx-shape-tube-round" viewBox="0 0 240 160">
+                <circle class="shape-solid" cx="120" cy="80" r="56"/>
+                <circle class="shape-cutout" cx="120" cy="80" r="34" fill="#10a19a" fill-opacity="1"/>
+              </symbol>
+              <symbol id="mx-shape-tube-square" viewBox="0 0 240 160">
+                <rect class="shape-solid" x="62" y="22" width="116" height="116" rx="3"/>
+                <rect class="shape-cutout" x="86" y="46" width="68" height="68" rx="2" fill="#10a19a" fill-opacity="1"/>
+              </symbol>
+              <symbol id="mx-shape-tube-rect" viewBox="0 0 240 160">
+                <rect class="shape-solid" x="30" y="43" width="180" height="74" rx="3"/>
+                <rect class="shape-cutout" x="58" y="62" width="124" height="36" rx="2" fill="#10a19a" fill-opacity="1"/>
+              </symbol>
+              <symbol id="mx-shape-angle" viewBox="0 0 240 160">
+                <path class="shape-solid" d="M48 24H82V108H192V136H48Z"/>
+              </symbol>
+              <symbol id="mx-shape-channel" viewBox="0 0 240 160">
+                <path class="shape-solid" d="M40 24H74V105H166V24H200V136H40Z"/>
+              </symbol>
+              <symbol id="mx-shape-tee" viewBox="0 0 240 160">
+                <path class="shape-solid" d="M38 24H202V56H137V136H103V56H38Z"/>
+              </symbol>
+            </defs>
+            <use id="shape-visual-use" href="#mx-shape-plate" fill="#fff" fill-opacity=".11" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>
+          </svg>
+          <p id="shape-visual-label" class="shape-visual-label">Blech / Flachmaterial</p>
+        </div>
       </div>
     </section>
   </main>
@@ -109,6 +153,9 @@
     const totalBox = document.querySelector('#weight-total');
     const metreBox = document.querySelector('#weight-meter');
     const formulaBox = document.querySelector('#formula');
+    const shapeVisual = document.querySelector('#shape-visual');
+    const shapeVisualUse = document.querySelector('#shape-visual-use');
+    const shapeVisualLabel = document.querySelector('#shape-visual-label');
 
     const definitions = {
       plate: {
@@ -182,6 +229,10 @@
 
     function renderFields() {
       const definition = definitions[shapeField.value];
+      const shapeName = shapeField.selectedOptions[0].textContent.trim();
+      shapeVisualUse.setAttribute('href', `#mx-shape-${shapeField.value}`);
+      shapeVisualLabel.textContent = shapeName;
+      shapeVisual.setAttribute('aria-label', `Formdarstellung: ${shapeName}`);
       dimensions.replaceChildren();
       definition.fields.forEach(([name, label, value]) => {
         const wrapper = document.createElement('div');

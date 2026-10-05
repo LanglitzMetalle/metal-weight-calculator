@@ -8,7 +8,7 @@
     <header>
       <p class="eyebrow">Online-Werkzeug von METALXACT</p>
       <h1>Metallgewicht berechnen</h1>
-      <p class="intro">Berechnet die theoretische Masse einfacher Halbzeugformen. Alle Maße werden in Millimetern eingegeben; die Dichte bleibt editierbar.</p>
+      <p class="intro">Berechnet die theoretische Masse einfacher Halbzeugformen. Alle Maße werden in Millimetern eingegeben; die Dichte wird automatisch aus dem gewählten Werkstoff übernommen.</p>
     </header>
 
     <section class="calculator" aria-labelledby="calculator-title">
@@ -67,12 +67,13 @@
           <optgroup label="Kunststoff">
             <option value="1410" data-note="Technischer Richtwert für POM; im METALXACT Werkstoffdatenblatt-Bereich ist kein Dichtewert für POM veröffentlicht.">POM – 1.410 kg/m³ (Richtwert)</option>
           </optgroup>
-          <option value="custom">Eigene Dichte</option>
         </select>
 
-        <label for="density">Dichte in kg/m³</label>
-        <input id="density" type="number" min="1" step="1" value="7850" inputmode="decimal">
-        <p id="density-note" class="field-note">Technischer Richtwert 7.850 kg/m³ für Stahl nach SSAB Referenzwert; tatsächliche Produktmasse und Toleranzen prüfen.</p>
+        <div hidden aria-hidden="true">
+          <label for="density">Dichte in kg/m³</label>
+          <input id="density" type="number" min="1" step="1" value="7850" inputmode="decimal">
+          <p id="density-note" class="field-note">Technischer Richtwert 7.850 kg/m³ für Stahl nach SSAB Referenzwert; tatsächliche Produktmasse und Toleranzen prüfen.</p>
+        </div>
         <p class="field-note">Datenstand 05.10.2026. Quellen: <a href="https://www.metalxact.com/werkstoffdatenlaetter">METALXACT Werkstoffdatenblätter</a>.</p>
 
         <div id="dimensions" class="dimensions"></div>

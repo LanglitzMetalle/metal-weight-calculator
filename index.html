@@ -122,7 +122,7 @@
     <header>
       <p class="eyebrow">Online-Werkzeug von METALXACT</p>
       <h1>Metallgewicht berechnen</h1>
-      <p class="intro">Berechnet die theoretische Masse einfacher Halbzeugformen. Alle Maße werden in Millimetern eingegeben; die Dichte bleibt editierbar.</p>
+      <p class="intro">Berechnet die theoretische Masse einfacher Halbzeugformen. Alle Maße werden in Millimetern eingegeben; die Dichte wird automatisch aus dem gewählten Werkstoff übernommen.</p>
     </header>
 
     <section class="calculator" aria-labelledby="calculator-title">
@@ -181,12 +181,13 @@
           <optgroup label="Kunststoff">
             <option value="1410" data-note="Technischer Richtwert für POM; im METALXACT Werkstoffdatenblatt-Bereich ist kein Dichtewert für POM veröffentlicht.">POM – 1.410 kg/m³ (Richtwert)</option>
           </optgroup>
-          <option value="custom">Eigene Dichte</option>
         </select>
 
-        <label for="density">Dichte in kg/m³</label>
-        <input id="density" type="number" min="1" step="1" value="7850" inputmode="decimal">
-        <p id="density-note" class="field-note">Technischer Richtwert 7.850 kg/m³ für Stahl nach SSAB Referenzwert; tatsächliche Produktmasse und Toleranzen prüfen.</p>
+        <div hidden aria-hidden="true">
+          <label for="density">Dichte in kg/m³</label>
+          <input id="density" type="number" min="1" step="1" value="7850" inputmode="decimal">
+          <p id="density-note" class="field-note">Technischer Richtwert 7.850 kg/m³ für Stahl nach SSAB Referenzwert; tatsächliche Produktmasse und Toleranzen prüfen.</p>
+        </div>
         <div id="dimensions" class="dimensions"></div>
 
         <label for="quantity">Stückzahl</label>
@@ -212,7 +213,7 @@
       <h2 id="seo-calculator-title">Metallgewicht und Gewicht pro Meter berechnen</h2>
       <p>Der Rechner ermittelt das theoretische <strong>Blechgewicht, Stabgewicht, Rohrgewicht und Profilgewicht</strong> aus Querschnitt, Länge, Stückzahl und Dichte. Unterstützt werden Flachmaterial, Rundstab, Vierkantstab, Rechteckstab, Sechskantstab, Rundrohr, Vierkantrohr, Rechteckrohr sowie idealisierte L-, U- und T-Profile.</p>
       <div class="semantic-grid">
-        <article><h3>Werkstoffe</h3><p>Die Auswahl enthält dokumentierte Dichten aus METALXACT und Herstellerdatenblättern für konkrete Aluminium-, Edelstahl-, Kupfer- und Messinglegierungen. Stahl und POM bleiben klar gekennzeichnete Richtwerte; eigene Dichten können direkt eingegeben werden.</p></article>
+        <article><h3>Werkstoffe</h3><p>Die Auswahl enthält dokumentierte Dichten aus METALXACT und Herstellerdatenblättern für konkrete Aluminium-, Edelstahl-, Kupfer- und Messinglegierungen. Stahl und POM bleiben klar gekennzeichnete Richtwerte; die hinterlegte Dichte wird automatisch aus der Werkstoffauswahl übernommen.</p></article>
         <article><h3>Ergebnisse in kg und kg/m</h3><p>Ausgegeben werden Gewicht je Stück, Gesamtgewicht und theoretisches Metergewicht. So lassen sich Zuschnitte und laufende Meter vergleichbar vorberechnen.</p></article>
         <article><h3>Grenzen der Berechnung</h3><p>Das Ergebnis ersetzt keine Waage und keinen technischen Nachweis. Werkstoff, Norm, Lieferzustand, Toleranzen, Radien, Beschichtung und tatsächliche Abmessungen können die reale Masse verändern.</p></article>
       </div>

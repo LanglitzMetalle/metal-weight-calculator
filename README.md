@@ -8,20 +8,20 @@ Ein kleiner, komplett browserbasierter Rechner für die theoretische Masse einfa
 - Rund- und Rechteckrohre
 - Vierkantrohre sowie idealisierte Winkel-, U- und T-Profile
 
-Die Dichte ist frei editierbar. Die hinterlegten Materialwerte dienen nur als Richtwerte. Legierung, Toleranzen, Eckradien, Oberfläche und Fertigung können die reale Masse verändern.
+Die Dichte wird aus dem ausgewählten Werkstoff übernommen und ist im Seitenformular ausgeblendet. Die hinterlegten Werte dienen der theoretischen Vorberechnung. Legierung, Toleranzen, Eckradien, Oberfläche und Fertigung können die reale Masse verändern.
 
-Die Materialauswahl ist mit den öffentlich bereitgestellten METALXACT Werkstoffdatenblättern abgeglichen (Stand 05.10.2026). Enthalten sind bestätigte Dichten für EN AW-1050A, EN AW-2007, EN AW-2017A, EN AW-5083, EN AW-5754, EN AW-6060, EN AW-6082, 1.4301, 1.4404, 1.4541, 1.4571, CW004A, CW508L, CC483K und CC493K. Stahl S235JR und POM sind ausdrücklich als technische Richtwerte gekennzeichnet, da der METALXACT Datenblattbereich dafür keinen Dichtewert ausweist. Quelle: [METALXACT Werkstoffdatenblätter](https://www.metalxact.com/werkstoffdatenlaetter).
+Die Werkstoffauswahl enthält dokumentierte Werte und ausdrücklich gekennzeichnete Richtwerte. Quellen und Hinweise zu den einzelnen Einträgen sind im Rechner hinterlegt. Für die konkrete Legierung, den Lieferzustand, die Toleranzen und die tatsächliche Produktmasse sind die Originalunterlagen maßgeblich. Quelle: [METALXACT Werkstoffdatenblätter](https://www.metalxact.com/werkstoffdatenblaetter).
 
 ## Verwendung
 
-Der öffentliche Gewichtsrechner liegt auf der offiziellen METALXACT Website: https://www.metalxact.com/service/gewichtsrechner-metallprofile-bleche/ Die GitHub-Pages-Startadresse leitet dorthin weiter.
+Der eigenständige [Metallgewicht-Rechner auf GitHub Pages](https://langlitzmetalle.github.io/metal-weight-calculator/) ermittelt theoretische Werte anhand der ausgewählten Form, Maße, Stückzahl und des Werkstoff-Richtwerts. Ergänzend steht der [offizielle METALXACT Gewichtsrechner](https://www.metalxact.com/service/gewichtsrechner-metallprofile-bleche/) auf der Shopdomain bereit.
 
 ## Rechenweg
 
 1. Querschnitt in mm² bestimmen.
 2. Querschnitt mit der Länge in mm multiplizieren.
 3. Volumen von mm³ in m³ umrechnen.
-4. Volumen mit der eingegebenen Dichte in kg/m³ multiplizieren.
+4. Volumen mit der aus dem ausgewählten Werkstoff übernommenen Dichte in kg/m³ multiplizieren.
 
 Bei Rechteckrohren wird mit scharfkantiger Geometrie gerechnet. Eckradien werden nicht berücksichtigt.
 
@@ -50,3 +50,6 @@ Copyright © 2026 LANGLITZ Metalle GmbH. Alle Rechte vorbehalten.
 Der Quellcode, das Design, die Texte, Berechnungen und die Dokumentation sind Eigentum der LANGLITZ Metalle GmbH. Das Kopieren, Verändern, Veröffentlichen, Weiterverbreiten oder kommerzielle Verwerten ist ohne vorherige schriftliche Zustimmung untersagt. Die öffentliche Nutzung des bereitgestellten Rechners überträgt keine Rechte am Quellcode.
 
 Siehe `LICENSE`.
+
+
+

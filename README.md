@@ -14,7 +14,7 @@ Die Materialauswahl ist mit den öffentlich bereitgestellten METALXACT Werkstoff
 
 ## Verwendung
 
-`index.html` lokal im Browser öffnen. Es werden keine Daten übertragen und keine externen Bibliotheken geladen.
+Der öffentliche Gewichtsrechner liegt auf der offiziellen METALXACT Website: https://www.metalxact.com/service/gewichtsrechner-metallprofile-bleche/ Die GitHub-Pages-Startadresse leitet dorthin weiter.
 
 ## Rechenweg
 
